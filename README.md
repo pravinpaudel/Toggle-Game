@@ -13,7 +13,6 @@
 **/
 
 ```
-*Time pending we may discuss people's experience with the AI tools during a lecture later in the term*
 
 ![animated gif of the game](figures/togglegame.gif)
 
@@ -159,13 +158,7 @@ From some specific board state we know we can get to up to 9 other board states 
 
 ## Deliverables
 
-This assignment has 2 deliverables as follows:
-
-### Deliverable 1
-
-Due date: March 17, 10 AM
-
-For full marks on Deliverable 1, your submission must pass the  first deliverable unit-tests. You can find the first deliverable unit-tests in:
+It is helpful to ensure your code is passing the first deliverable unit-tests before moving on to the more involved parts of the assignment. You can find the first deliverable unit-tests in:
 
 ToggleGame.backend.ToggleGameEngineTest.FirstDeliverableTests
 
@@ -175,15 +168,9 @@ Those tests are as follows:
 - a test expecting you to return 0 if the same argument is passed into the two parameters of minNumberOfMoves. In other words, if someone is asking how many moves to migrate one state to the same state, your code should return 0.
 - a test expecting you to return an empty int[] array if someone passes the same argument into both parameters of the movesToSolve method.
 
-Grading: X/1
+### Further Deliverablea
 
-1 point if your submission passes the associated unit-tests. There is no further evaluation in this deliverable.
-
-These unit-tests will be run automatically using Github Autograder each time you push code to your repository. To get full marks for Deliverable 1 your repository should be passing these unit-tests on the Deliverable date.
-
-### Final Deliverable
-
-Due date: March 27, 2023 @ 10AM
+Due date: April, 6 2025 @ 11:59PM (Atlantic time)
 
 Full implementation of the program including the `movesToSolve`, `buttonClicked` and `minNumberOfMoves` methods.
 
@@ -194,7 +181,7 @@ Grading:
 
 Code Readability: X/1
 Code Design: X/2
-`FirstDeliverableTests`: X/1 (separate due date)
+`FirstDeliverableTests`: X/1 
 `BoardStatesTests` pass : X/2
 `MinimumRequiredMovesTests` pass: X/2
 `PathToTargetTests`: X/2
