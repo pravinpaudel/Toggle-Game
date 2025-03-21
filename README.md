@@ -168,7 +168,7 @@ Those tests are as follows:
 - a test expecting you to return 0 if the same argument is passed into the two parameters of minNumberOfMoves. In other words, if someone is asking how many moves to migrate one state to the same state, your code should return 0.
 - a test expecting you to return an empty int[] array if someone passes the same argument into both parameters of the movesToSolve method.
 
-### Further Deliverablea
+### Further Deliverables
 
 Due date: April, 6 2025 @ 11:59PM (Atlantic time)
 
@@ -180,10 +180,15 @@ Grading:
 
 
 Code Readability: X/1
+
 Code Design: X/2
+
 `FirstDeliverableTests`: X/1 
+
 `BoardStatesTests` pass : X/2
+
 `MinimumRequiredMovesTests` pass: X/2
+
 `PathToTargetTests`: X/2
 
 
