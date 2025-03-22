@@ -1,7 +1,9 @@
 package ToggleGame.backend;
 import ToggleGame.frontend.ToggleGameInteraction;
 
-import java.util.Random;
+import java.util.*;
+
+import static ToggleGame.backend.GameHelper.*;
 
 /**
  * Buttons have the following order / placement on the screen
@@ -17,6 +19,12 @@ import java.util.Random;
  */
 public class ToggleGameEngine implements ToggleGameInteraction {
 
+    private final HashMap<Integer, String> mask;
+
+    public ToggleGameEngine() {
+        mask = new HashMap<>();
+        setMask();
+    }
     /**
      * Initialize and return the game board for a ToggleGame (9x "1")
      * @return the String "111111111" to start a game with all white squares
@@ -24,7 +32,8 @@ public class ToggleGameEngine implements ToggleGameInteraction {
     @Override
     public String initializeGame() {
         //starter code ... replace the below code with a string containing all 1's
-        return GameHelper.generateRandomBoard();
+        setMask();
+        return "111111111";
     }
 
     /**
@@ -41,7 +50,11 @@ public class ToggleGameEngine implements ToggleGameInteraction {
     @Override
     public String buttonClicked(String current, int button) {
         //starter code...replace the below code
-        return GameHelper.generateRandomBoard();
+
+        int binaryMask = stringToBinary(mask.get(button));
+        int binaryCurrent = stringToBinary(current);
+
+        return binaryToString(binaryCurrent ^ binaryMask);
     }
 
 
@@ -60,7 +73,12 @@ public class ToggleGameEngine implements ToggleGameInteraction {
     @Override
     public int[] movesToSolve(String current, String target) {
         //starter code ... replace the below
-        return new int[] {new Random().nextInt(9)};
+        if(current.equals(target))
+            return new int[0];
+
+        ArrayList<Integer> minMoves = new ArrayList<>();
+        findMoves(minMoves, new ArrayList<>(), current, target, current, new HashSet<>());
+        return minMoves.stream().mapToInt(Integer::intValue).toArray();
     }
 
     /**
@@ -77,6 +95,42 @@ public class ToggleGameEngine implements ToggleGameInteraction {
     @Override
     public int minNumberOfMoves(String current, String target) {
         //starter code ... replace the below
-        return new Random().nextInt(9);
+        if(current.equals(target))
+            return 0;
+        int[] moves = movesToSolve(current, target);
+        return moves.length;
+    }
+
+    private void setMask() {
+        mask.put(0, "110100000");
+        mask.put(1, "111010000");
+        mask.put(2, "11001000");
+        mask.put(3, "100110100");
+        mask.put(4, "10111010");
+        mask.put(5, "1011001");
+        mask.put(6, "100110");
+        mask.put(7, "10111");
+        mask.put(8, "1011");
+    }
+
+    private void findMoves(ArrayList<Integer> minMoves, ArrayList<Integer> moves, String parent, String target, String current, Set<String> visited) {
+        if(current.equals(target)) {
+            if(minMoves.isEmpty() || minMoves.size() > moves.size()) {
+                minMoves.clear();
+                minMoves.addAll(moves);
+            }
+            return;
+        }
+        if(visited.contains(current))
+            return;
+        visited.add(current);
+        for(int i = 0; i < 9; i++) {
+            String nextState = buttonClicked(current, i);
+            if(!nextState.equals(parent)) {
+                moves.add(i);
+                findMoves(minMoves, moves, current, target, nextState, visited);
+                moves.removeLast();
+            }
+        }
     }
 }
