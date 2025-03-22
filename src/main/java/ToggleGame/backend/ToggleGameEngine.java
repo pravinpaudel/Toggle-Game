@@ -117,27 +117,6 @@ public class ToggleGameEngine implements ToggleGameInteraction {
         mask.put(8, "1011");
     }
 
-    private void findMoves(ArrayList<Integer> minMoves, ArrayList<Integer> moves, String parent, String target, String current, Set<String> visited) {
-        if(current.equals(target)) {
-            if(minMoves.isEmpty() || minMoves.size() > moves.size()) {
-                minMoves.clear();
-                minMoves.addAll(moves);
-            }
-            return;
-        }
-        if(visited.contains(current))
-            return;
-        visited.add(current);
-        for(int i = 0; i < 9; i++) {
-            String nextState = buttonClicked(current, i);
-            if(!nextState.equals(parent)) {
-                moves.add(i);
-                findMoves(minMoves, moves, current, target, nextState, visited);
-                moves.removeLast();
-            }
-        }
-    }
-
     /**
      * Finds minimum moves to reach the target
      * @param start Current state of the board
