@@ -1,5 +1,6 @@
 package ToggleGame.backend;
 import ToggleGame.frontend.ToggleGameInteraction;
+import com.sun.jdi.event.StepEvent;
 
 import java.util.*;
 
@@ -21,6 +22,9 @@ public class ToggleGameEngine implements ToggleGameInteraction {
 
     private final HashMap<Integer, String> mask;
 
+    /**
+     * Constructor. Initialises the mask
+     */
     public ToggleGameEngine() {
         mask = new HashMap<>();
         setMask();
@@ -76,9 +80,7 @@ public class ToggleGameEngine implements ToggleGameInteraction {
         if(current.equals(target))
             return new int[0];
 
-        ArrayList<Integer> minMoves = new ArrayList<>();
-        findMoves(minMoves, new ArrayList<>(), current, target, current, new HashSet<>());
-        return minMoves.stream().mapToInt(Integer::intValue).toArray();
+        return findMoves(current, target);
     }
 
     /**
@@ -97,10 +99,12 @@ public class ToggleGameEngine implements ToggleGameInteraction {
         //starter code ... replace the below
         if(current.equals(target))
             return 0;
-        int[] moves = movesToSolve(current, target);
-        return moves.length;
+        return movesToSolve(current, target).length;
     }
 
+    /**
+     * Sets the mask value for each button
+     */
     private void setMask() {
         mask.put(0, "110100000");
         mask.put(1, "111010000");
@@ -132,5 +136,56 @@ public class ToggleGameEngine implements ToggleGameInteraction {
                 moves.removeLast();
             }
         }
+    }
+
+    /**
+     * Finds minimum moves to reach the target
+     * @param start Current state of the board
+     * @param target Target to reach
+     * @return An array with button numbers to reach the target
+     */
+    private int[] findMoves(String start, String target) {
+        Queue<String> q = new LinkedList<>();
+        HashMap<String, String> parent = new HashMap<>(); // child, parent
+        HashMap<String, Integer> move = new HashMap<>(); // State, Button
+        q.add(start);
+
+        parent.put(start, start);
+
+        while (!q.isEmpty()) {
+            String current = q.poll();
+
+            if(current.equals(target))
+                return constructPath(parent, move, current, start);
+
+            for(int i = 0; i < 9; i++){
+                String nextState = buttonClicked(current, i);
+                if(!parent.containsKey(nextState)) {
+                    parent.put(nextState, current);
+                    move.put(nextState, i);
+                    q.add(nextState);
+                }
+            }
+        }
+        return new int[0];
+    }
+
+    /**
+     * Constructs a path from starting state of the board to a target
+     * @param parent A Hashmap representing parent and child relationship
+     * @param move A Hashmap to representing a board state and the button number
+     * @param current A string representing current state of the board
+     * @param root A string representing target board state
+     * @return An array with button numbers to reach the target
+     */
+    private int[] constructPath(HashMap<String, String> parent, HashMap<String, Integer> move, String current, String root) {
+        List<Integer> path = new ArrayList<>();
+        while(!current.equals(root)) {
+            int button = move.get(current);
+            path.add(button);
+            current = parent.get(current);
+        }
+        Collections.reverse(path);
+        return path.stream().mapToInt(Integer::intValue).toArray();
     }
 }
