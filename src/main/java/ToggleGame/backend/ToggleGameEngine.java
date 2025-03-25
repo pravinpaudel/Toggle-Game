@@ -104,6 +104,8 @@ public class ToggleGameEngine implements ToggleGameInteraction {
 
     /**
      * Sets the mask value for each button
+     * If each button clicked, perform XOR with its mask value and the current state
+     * For e.g, if 0 is clicked, do current state ^ 110100000.
      */
     private void setMask() {
         mask.put(0, "110100000");
