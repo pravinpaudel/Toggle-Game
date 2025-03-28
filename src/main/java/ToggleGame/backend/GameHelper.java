@@ -19,7 +19,7 @@ public class GameHelper {
     public static String generateRandomBoard() {
         Random r = new Random();
         StringBuilder target = new StringBuilder();
-        for(int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; i++) {
             target.append(r.nextInt(2));
         }
         return target.toString();
