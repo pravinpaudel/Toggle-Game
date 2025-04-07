@@ -36,7 +36,6 @@ public class ToggleGameEngine implements ToggleGameInteraction {
     @Override
     public String initializeGame() {
         //starter code ... replace the below code with a string containing all 1's
-        
         return "111111111";
     }
 
