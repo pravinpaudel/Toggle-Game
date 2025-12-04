@@ -76,13 +76,13 @@ Players are presented with a random target board configuration. The goal is to r
 **On macOS/Linux:**
 ```bash
 cd Toggle-Game-<version>
-./bin/ToggleGameAssignment
+./bin/ToggleGame
 ```
 
 **On Windows:**
 ```bash
 cd Toggle-Game-<version>
-.\bin\ToggleGameAssignment.bat
+.\bin\ToggleGame.bat
 ```
 
 **Requirements:** Java Runtime Environment (JRE) 11 or higher must be installed on your system.
@@ -107,7 +107,7 @@ cd Toggle-Game
 
 # Or create a distribution
 ./gradlew installDist
-# The executable will be in build/install/ToggleGameAssignment/bin/
+# The executable will be in build/install/ToggleGame/bin/
 ```
 
 ### Running Tests
