@@ -24,3 +24,11 @@ test {
 application {
     mainClass = 'ToggleGame.Driver'
 }
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'ToggleGame.Driver'
+        )
+    }
+}

@@ -66,19 +66,48 @@ Players are presented with a random target board configuration. The goal is to r
 
 ## 🚀 Getting Started
 
-### Prerequisites
+### Option 1: Download Pre-built Release (Recommended)
 
+1. Go to the [Releases](https://github.com/pravinpaudel/Toggle-Game/releases) page
+2. Download the latest release archive (`.zip` or `.tar`)
+3. Extract the archive to your desired location
+4. Run the game:
+
+**On macOS/Linux:**
+```bash
+cd Toggle-Game-<version>
+./bin/ToggleGameAssignment
+```
+
+**On Windows:**
+```bash
+cd Toggle-Game-<version>
+.\bin\ToggleGameAssignment.bat
+```
+
+**Requirements:** Java Runtime Environment (JRE) 11 or higher must be installed on your system.
+
+### Option 2: Build from Source
+
+**Prerequisites:**
 - Java Development Kit (JDK) 11 or higher
 - Gradle (included via wrapper)
 
-### Building the Game
-
+**Steps:**
 ```bash
-# Using Gradle wrapper (recommended)
+# Clone the repository
+git clone https://github.com/pravinpaudel/Toggle-Game.git
+cd Toggle-Game
+
+# Build the project
 ./gradlew build
 
 # Run the game
 ./gradlew run
+
+# Or create a distribution
+./gradlew installDist
+# The executable will be in build/install/ToggleGameAssignment/bin/
 ```
 
 ### Running Tests
