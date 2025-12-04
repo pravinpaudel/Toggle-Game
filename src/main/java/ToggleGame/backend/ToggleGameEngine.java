@@ -109,13 +109,13 @@ public class ToggleGameEngine implements ToggleGameInteraction {
     private void setMask() {
         mask.put(0, "110100000");
         mask.put(1, "111010000");
-        mask.put(2, "11001000");
+        mask.put(2, "011001000");
         mask.put(3, "100110100");
-        mask.put(4, "10111010");
-        mask.put(5, "1011001");
-        mask.put(6, "100110");
-        mask.put(7, "10111");
-        mask.put(8, "1011");
+        mask.put(4, "010111010");
+        mask.put(5, "001011001");
+        mask.put(6, "000100110");
+        mask.put(7, "000010111");
+        mask.put(8, "000001011");
     }
 
     /**
